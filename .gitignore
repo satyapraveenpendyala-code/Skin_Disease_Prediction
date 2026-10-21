@@ -1,0 +1,21 @@
+# Environments
+venv/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Dataset (Huge files)
+backend/dataset/
+backend/dataset.zip
+
+# Uploads (Ignore the images, keep the folders)
+backend/uploads/*
+frontend/uploads/*
+!backend/uploads/.gitkeep
+!frontend/uploads/.gitkeep
+
+# OS specific
+.DS_Store
+Thumbs.db

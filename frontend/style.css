@@ -1,0 +1,195 @@
+/* --- GLOBAL STYLES --- */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f4f8; /* Soft Medical Blue-Grey */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* KILL SCROLLBARS */
+}
+
+/* --- MAIN CONTAINER --- */
+.container {
+    background-color: #ffffff;
+    
+    /* INITIAL STATE: BIGGER AND WIDER */
+    width: 800px; /* Increased from 500px to 800px */
+    max-width: 95vw; /* Safe for mobile */
+    height: auto;
+    max-height: 90vh;
+    
+    padding: 40px; /* More internal space */
+    
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+    text-align: center;
+    
+    /* ANIMATION */
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* EXPANDED STATE: Fills the screen */
+.container.expanded {
+    width: 95vw;  /* 95% of screen width */
+    height: 90vh; /* 90% of screen height */
+    max-width: 1600px;
+    padding: 30px; 
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 28px; /* Larger Title */
+    margin: 0 0 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 4px solid #3498db;
+    display: inline-block;
+    align-self: center;
+    flex-shrink: 0;
+}
+
+/* --- LAYOUT WRAPPER --- */
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    gap: 0;
+    transition: gap 0.8s ease;
+    overflow: hidden;
+}
+
+.container.expanded .content-wrapper {
+    gap: 50px; /* Big gap between panels */
+}
+
+/* --- LEFT PANEL (Inputs) --- */
+.left-panel {
+    width: 100%;
+    transition: width 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container.expanded .left-panel {
+    width: 35%; 
+}
+
+/* --- RIGHT PANEL (Results) --- */
+.right-panel {
+    width: 0;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 2px solid #eee; /* Thicker divider */
+}
+
+.container.expanded .right-panel {
+    width: 65%;
+    opacity: 1;
+    transform: translateX(0);
+    padding-left: 50px;
+}
+
+/* --- INPUTS --- */
+.row-inputs {
+    display: flex;
+    gap: 20px; /* Bigger gap between inputs */
+    margin-bottom: 25px;
+}
+.input-group { flex: 1; text-align: left; }
+.input-group label { display: block; font-size: 14px; font-weight: 700; color: #444; margin-bottom: 8px; }
+.input-group input, .input-group select { 
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    background: #fafafa; 
+    font-size: 14px;
+}
+
+/* --- UPLOAD BOX --- */
+.upload-section {
+    border: 3px dashed #bdc3c7; /* Thicker dashes */
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    background-color: #f9fbfd;
+    flex-grow: 1; 
+    min-height: 200px; /* Taller upload box initially */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+.upload-section:hover { border-color: #3498db; background: #eef6fc; }
+
+#preview {
+    max-width: 100%;
+    max-height: 180px;
+    border-radius: 8px;
+    display: block;
+    margin-top: 15px;
+    object-fit: contain;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- BUTTON --- */
+.btn {
+    width: 100%;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 18px; /* Big, clickable button */
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 25px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.1s;
+}
+.btn:hover { background-color: #2980b9; transform: translateY(-2px); }
+
+/* --- RESULTS CONTENT --- */
+.results-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.results-content h2 { margin: 0 0 10px 0; font-size: 28px; color: #2c3e50; }
+.results-content h3 { margin: 0 0 20px 0; font-size: 20px; color: #7f8c8d; font-weight: normal; }
+
+.heatmap-container {
+    flex-grow: 1;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#heatmapOutput {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
